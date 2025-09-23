@@ -6,59 +6,66 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb" // <-- from shadcn/ui
+} from "@/components/ui/breadcrumb"
 
 export default function Header() {
   return (
-    // Sticky header with gradient background
-    <header className="flex items-center justify-between px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg sticky top-0 z-20 text-white">
+    // ---------- Header Wrapper ----------
+    // Smaller height, white background, subtle green border and shadow
+    <header className="flex items-center justify-between px-6 py-3 bg-white border-b border-green-100 shadow-sm sticky top-0 z-20">
       
-      {/* ---------- Left Section: User Info + Breadcrumb ---------- */}
-      <div className="flex items-center space-x-6">
-        {/* User Avatar & Name */}
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-            <User className="w-6 h-6 text-white" />
+      {/* ---------- LEFT SECTION: User Info + Breadcrumb ---------- */}
+      <div className="flex items-center space-x-4">
+        
+        {/* User Avatar + Username */}
+        <div className="flex items-center space-x-2">
+          <div className="w-9 h-9 rounded-full bg-green-100 flex items-center justify-center">
+            <User className="w-5 h-5 text-green-700" />
           </div>
-          <span className="font-semibold text-lg">John Doe</span>
+          <span className="font-medium text-gray-800 text-sm">John Doe</span>
         </div>
 
         {/* Breadcrumb Navigation */}
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem className="hidden md:block">
-              <BreadcrumbLink href="#">Dashboard</BreadcrumbLink>
+              <BreadcrumbLink href="#" className="text-gray-500 hover:text-green-600">
+                Dashboard
+              </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator className="hidden md:block" />
             <BreadcrumbItem>
-              <BreadcrumbPage>Study Goals</BreadcrumbPage>
+              <BreadcrumbPage className="text-gray-700 font-medium">
+                Study Goals
+              </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
       </div>
 
-      {/* ---------- Middle Section: Stats ---------- */}
-      <div className="flex items-center space-x-6">
-        {/* Goals */}
-        <div className="bg-white/20 backdrop-blur-md rounded-xl px-4 py-2 text-center hover:bg-white/30 transition">
-          <span className="text-sm opacity-80">Goals Remaining</span>
-          <div className="font-bold text-xl">5</div>
+      {/* ---------- RIGHT SECTION: Stats + Notifications ---------- */}
+      <div className="flex items-center space-x-4">
+        
+        {/* Goals Card */}
+        <div className="bg-green-50 border border-green-200 rounded-lg px-3 py-1.5 text-center shadow-sm hover:shadow transition">
+          <span className="text-xs text-green-700 block">Goals</span>
+          <div className="font-semibold text-green-800 text-sm">5</div>
         </div>
-        {/* Streak */}
-        <div className="bg-white/20 backdrop-blur-md rounded-xl px-4 py-2 text-center hover:bg-white/30 transition">
-          <span className="text-sm opacity-80">Streak</span>
-          <div className="font-bold text-xl">🔥 12 days</div>
+
+        {/* Streak Card */}
+        <div className="bg-green-50 border border-green-200 rounded-lg px-3 py-1.5 text-center shadow-sm hover:shadow transition">
+          <span className="text-xs text-green-700 block">Streak</span>
+          <div className="font-semibold text-green-800 text-sm">🔥 12d</div>
+        </div>
+
+        {/* Notification Bell with Badge */}
+        <div className="relative cursor-pointer hover:scale-110 transition-transform">
+          <Bell className="w-6 h-6 text-green-700" />
+          <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full animate-bounce">
+            3
+          </span>
         </div>
       </div>
-
-      {/* ---------- Right Section: Notifications ---------- */}
-      <div className="relative cursor-pointer hover:scale-110 transition-transform">
-        <Bell className="w-7 h-7" />
-        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full animate-bounce">
-          3
-        </span>
-      </div>
-
     </header>
   )
 }
