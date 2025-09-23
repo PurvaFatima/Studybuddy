@@ -1,11 +1,7 @@
+import * as React from "react"
+import MainContent from "@/components/MainContent"
 
-
-export default function Home() {
-  return (
-    <div>
-
-    </div>
-  );
+export default function Page() {
+  return <MainContent />
 }
-
 
