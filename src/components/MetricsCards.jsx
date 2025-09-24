@@ -3,6 +3,7 @@
 import React from "react";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import { Box, Card, CardContent, Typography } from "@mui/material";
+import HoverWrapper from "./HoverWrapper";
 
 export default function MetricsCards({ tasks }) {
   // ---------- Get the first 3 upcoming tasks ----------
@@ -12,54 +13,88 @@ export default function MetricsCards({ tasks }) {
     .slice(0, 3); // take top 3
 
   return (
-    <Box sx={{ display: "flex", gap: 2, mb: 4 }}>
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: {
+          xs: "1fr", // 1 column on mobile
+          sm: "1fr 1fr", // 2 columns on tablet
+          md: "1fr 1fr 1fr", // 3 columns on desktop
+        },
+        gap: 3,
+        mb: 6,
+      }}
+    >
       {upcomingTasks.length > 0 ? (
         upcomingTasks.map((task) => (
-          <Card
-            key={task.id} // unique key for React
-            sx={{
-              flex: 1, // equal width
-              p: 2,
-              border: "1px solid #e0e0e0",
-              boxShadow: "0 0 10px rgba(0, 255, 0, 0.2)",
-              transition: "transform 0.2s",
-              "&:hover": { transform: "scale(1.02)" }, // subtle hover effect
-            }}
-          >
-            <CardContent>
-              {/* Bell icon + task title */}
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                <NotificationsActiveIcon
-                  color="success"
-                  sx={{
-                    animation: "glow 1s infinite alternate", // glowing animation
-                  }}
-                />
-                <Typography variant="h6">{task.task}</Typography>
-              </Box>
+          <HoverWrapper key={task.id}>
+            <Card
+              sx={{
+                p: 2,
+                borderRadius: 3,
+                background:
+                  "linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%)", // soft indigo gradient
+              }}
+            >
+              <CardContent>
+                {/* Bell icon + task title */}
+                <Box
+                  sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}
+                >
+                  <NotificationsActiveIcon
+                    sx={{
+                      fontSize: 28,
+                      color: "#4f46e5", // indigo
+                      animation: "glow 1.5s infinite alternate",
+                    }}
+                  />
+                  <Typography variant="h6" fontWeight="600" color="text.primary">
+                    {task.task}
+                  </Typography>
+                </Box>
 
-              {/* Task due date */}
-              <Typography variant="body2" color="text.secondary">
-                Due: {task.dueDate}
-              </Typography>
+                {/* Task due date */}
+                <Typography
+                  variant="body2"
+                  sx={{ color: "text.secondary", mb: 0.5 }}
+                >
+                  📅 Due: <strong>{task.dueDate}</strong>
+                </Typography>
 
-              {/* Optional topic */}
-              {task.topic && (
-                <Typography variant="body2">Topic: {task.topic}</Typography>
-              )}
-            </CardContent>
-          </Card>
+                {/* Optional topic */}
+                {task.topic && (
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      backgroundColor: "rgba(79, 70, 229, 0.08)", // indigo tint
+                      px: 1.2,
+                      py: 0.5,
+                      borderRadius: 2,
+                      display: "inline-block",
+                      fontSize: "0.8rem",
+                      fontWeight: 500,
+                      color: "#4f46e5",
+                    }}
+                  >
+                    Topic: {task.topic}
+                  </Typography>
+                )}
+              </CardContent>
+            </Card>
+          </HoverWrapper>
         ))
       ) : (
-        <Typography>No upcoming tasks</Typography>
+        <Typography variant="body1" sx={{ color: "text.secondary" }}>
+          No upcoming tasks 🚫
+        </Typography>
       )}
 
       {/* ---------- Glowing animation keyframes ---------- */}
       <style>
         {`
           @keyframes glow {
-            0% { box-shadow: 0 0 5px rgba(0,255,0,0.3); }
-            100% { box-shadow: 0 0 15px rgba(0,255,0,0.6); }
+            0% { filter: drop-shadow(0 0 4px rgba(79,70,229,0.4)); }
+            100% { filter: drop-shadow(0 0 12px rgba(79,70,229,0.8)); }
           }
         `}
       </style>
