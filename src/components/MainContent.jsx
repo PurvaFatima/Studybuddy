@@ -1,30 +1,46 @@
 "use client"
 
-
 import * as React from "react"
+import { useState } from "react"
 import TasksTable from "./TasksTable" 
 import MetricsCards from "./MetricsCards"
-import { useState } from "react"
+import DrilldownMonthPie from "./DrilldownMonthPie"
+import RemindersCalendar from "./Calender"
 
 const MainContent = () => {
+  // Handling Tasks for data fetching
+  const [tasks, setTasks] = useState([])
 
-    //Handling Tasks for data fetching
-    const [tasks, setTasks] = useState([])
-  
-    return (
-    <main className="flex-1 p-6">
-      {/* Metrics Cards (upar ke section) */}
-      <h1 className="text-4xl font-semibold mb-4 rounded-4xl ">Important Reminders ‼ </h1>
+  return (
+    <main className="flex-1 p-6 space-y-10">
+      {/* Header */}
+      <h1 className="text-4xl font-bold mb-2">Important Reminders ‼</h1>
+
+      {/* Metrics Cards */}
       <MetricsCards tasks={tasks} />
 
-      {/* Charts (neeche add honge) */}
+      {/* Charts Section */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-6">Summary</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Pie Chart */}
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-md p-4">
+            <DrilldownMonthPie tasks={tasks} />
+          </div>
 
-      {/* Calendar (charts ke sath show karenge) */}
+          {/* Calendar */}
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-md p-4">
+            <RemindersCalendar tasks={tasks} />
+          </div>
+        </div>
+      </section>
 
-      {/* Table section */}
-      <section className="mt-6">
-        <h1 className="text-4xl font-semibold mb-4">Reminders</h1>
-        <TasksTable tasks={tasks} setTasks={setTasks} />    
+      {/* Table Section */}
+      <section>
+        <h2 className="text-3xl font-semibold mb-4">Reminders</h2>
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-md p-4">
+          <TasksTable tasks={tasks} setTasks={setTasks} />
+        </div>
       </section>
     </main>
   )
