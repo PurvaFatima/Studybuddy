@@ -1,5 +1,5 @@
 "use client";
-
+import React from "react";
 import PropTypes from "prop-types";
 import { Bell, User } from "lucide-react";
 import {
@@ -141,6 +141,6 @@ Header.defaultProps = {
   streakDays: 12,
   notificationsCount: 3,
   onNotificationsClick: () => {},
-};
+}
 
 export default React.memo(Header);

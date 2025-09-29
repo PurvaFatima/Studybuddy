@@ -40,11 +40,6 @@ export default function RootLayout({ children }) {
           <main className="flex-1 overflow-y-auto bg-gray-50 p-6">
             {children}
           </main>
-
-          {/* Footer */}
-          <footer className="bg-white shadow border-t text-center p-4">
-  <p className="text-sm text-gray-500">© 2025 StudyBuddy</p>
-</footer>
         </div>
       </body>
     </html>
