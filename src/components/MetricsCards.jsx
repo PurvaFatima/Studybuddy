@@ -23,6 +23,7 @@ export default function MetricsCards({ tasks }) {
         },
         gap: 3,
         mb: 6,
+        alignItems: "stretch",
       }}
     >
       {upcomingTasks.length > 0 ? (
@@ -34,9 +35,12 @@ export default function MetricsCards({ tasks }) {
                 borderRadius: 3,
                 background:
                   "linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%)", // soft indigo gradient
+                 display: "flex",         
+    flexDirection: "column", 
+    height: "100%",
               }}
             >
-              <CardContent>
+              <CardContent sx={{ flexGrow: 1 }}>
                 {/* Bell icon + task title */}
                 <Box
                   sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}

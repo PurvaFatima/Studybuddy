@@ -8,6 +8,7 @@ export default function HoverWrapper({ children }) {
 
   return (
     <motion.div
+    key={'motion'}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       animate={{

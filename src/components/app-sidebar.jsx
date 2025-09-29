@@ -4,16 +4,12 @@ import * as React from "react"
 import {
   AudioWaveform,
   BookOpen,
-  Bot,
   Command,
-  Frame,
+  Clock,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
   ChevronLeft,
   ChevronRight,
+  Home as HomeIcon, // Correct icon import
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -29,7 +25,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-// This is sample data.
+// Sidebar data
 const data = {
   user: {
     name: "shadcn",
@@ -37,142 +33,32 @@ const data = {
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [
-    {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
-  ],
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
+    { name: "Acme Inc", logo: GalleryVerticalEnd, plan: "Enterprise" },
+    { name: "Acme Corp.", logo: AudioWaveform, plan: "Startup" },
+    { name: "Evil Corp.", logo: Command, plan: "Free" },
   ],
   projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
+    { name: "Design Engineering", url: "#", icon: Command },
+    { name: "Sales & Marketing", url: "#", icon: Clock },
+    { name: "Travel", url: "#", icon: AudioWaveform },
+  ],
+  navMain: [
+    { title: "Home", url: "/", icon: HomeIcon },
+    { title: "Resources", url: "/resources", icon: BookOpen },
+    { title: "Study Timer", url: "/study-timer", icon: Clock },
   ],
 }
 
-export function AppSidebar({
-  ...props
-})
-{
-
-  
- const { state, toggleSidebar } = useSidebar();
-
+export function AppSidebar({ ...props }) {
+  const { state, toggleSidebar } = useSidebar()
 
   return (
     <Sidebar collapsible="icon" {...props}>
-      <button
+      <SidebarHeader className="flex items-center justify-between">
+        <TeamSwitcher teams={data.teams} />
+        <button
           onClick={toggleSidebar}
-          className="p-2 rounded-md hover:bg-gray-100 transition"
+          className="p-2 rounded-md hover:bg-[#E9E6F7] transition"
           aria-label="Toggle Sidebar"
         >
           {state === "expanded" ? (
@@ -181,17 +67,22 @@ export function AppSidebar({
             <ChevronRight className="h-5 w-5" />
           )}
         </button>
-      <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
+
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain
+          items={data.navMain}
+          activeBgColor="#D6D0EF"
+          hoverBgColor="#E9E6F7"
+        />
         <NavProjects projects={data.projects} />
       </SidebarContent>
+
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
+
       <SidebarRail />
     </Sidebar>
-  );
+  )
 }
