@@ -50,7 +50,7 @@ const RemindersCalendar = ({ tasks = [] }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl mx-auto p-6">
-      
+
       {/* Quotes Carousel */}
       <div
         className="flex items-center justify-center w-full max-w-full"

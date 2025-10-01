@@ -88,11 +88,10 @@ const QuotesCarousel = () => {
             aria-label={`Go to quote ${i + 1}`}
             onClick={() => setIndex(i)}
             onKeyDown={(e) => e.key === "Enter" && setIndex(i)}
-            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-              i === index
+            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${i === index
                 ? "bg-indigo-400 w-8"
                 : "bg-gray-400 w-2 hover:bg-gray-300"
-            }`}
+              }`}
           />
         ))}
       </div>

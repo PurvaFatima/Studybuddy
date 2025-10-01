@@ -12,7 +12,7 @@ const GRADIENT_COLORS = [
 ];
 
 const STATUS_COLORS = ["#34D399", "#F87171"];
-const MONTH_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 /**
  * Parse a date-like string into { month, year } using dayjs with sensible fallbacks.

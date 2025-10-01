@@ -116,6 +116,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -125,12 +126,14 @@
   from {
     text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
   }
+
   to {
     text-shadow: 0 0 15px #00cc00, 0 0 20px #00cc00;
   }
 }
+
 @layer components {
   .glow {
     animation: glow 1s infinite alternate;
   }
-} 
+}

@@ -124,7 +124,7 @@ export default function MetricsCards({ tasks }) {
                   </Typography>
 
                   {/* Optional topic/subject */}
-                  { (task?.topic || task?.subject) && (
+                  {(task?.topic || task?.subject) && (
                     <Typography
                       variant="body2"
                       sx={{
